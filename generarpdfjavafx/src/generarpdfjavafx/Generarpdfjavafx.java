@@ -42,6 +42,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -55,7 +56,7 @@ public class Generarpdfjavafx extends Application {
     public static final String dest = "C:\\Users\\familia\\Documents\\NetBeansProjects\\generarpdfjavafx\\boletas con javafx.pdf";
     public static final String ESCU = "C:\\Users\\familia\\Pictures\\escudo edo.png";
     public static final String LOGO = "C:\\Users\\familia\\Pictures\\logocbt.png";
-    public static final String dest3 = "C:\\Users\\familia\\Documents\\NetBeansProjects\\javafx\\DATOS AUMNO.xlsx";
+    public static final String dest3 = "C:\\Users\\familia\\Documents\\NetBeansProjects\\generarpdfjavafx\\DATOS AUMNO.xlsx";
     
     private final Label nombre = new Label("nombre del alumno");
     private final Label grado = new Label("grado");
@@ -115,6 +116,7 @@ public class Generarpdfjavafx extends Application {
                     String grup = gru.getText();
                     new Generarpdfjavafx().crearPdf(dest,nomb,grad,grup);
                     System.out.println("pdf generado");
+                    JOptionPane.showInputDialog(null,"PDF GENERADO");
                 } catch (IOException ex) {
                     Logger.getLogger(Generarpdfjavafx.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -122,8 +124,7 @@ public class Generarpdfjavafx extends Application {
         });
         
          
-         
-                
+       
        
     }
 
@@ -154,9 +155,9 @@ public class Generarpdfjavafx extends Application {
 
         PdfFont font1 = PdfFontFactory.createFont(FontConstants.COURIER);
 
-        Table tabla = new Table(new float[]{7, 7, 7});
+        Table tabla = new Table(new float[]{7, 7, 7,7});
         tabla.setWordSpacing(0);
-
+//inicia seleccion del archivo excel
         FileInputStream archivo = new FileInputStream(dest3);
         XSSFWorkbook libro = new XSSFWorkbook(archivo);
 
@@ -194,7 +195,7 @@ public class Generarpdfjavafx extends Application {
             }
         }
         libro.close();
-
+//fin de excel
         Paragraph p1 = new Paragraph()
                 .add(escu).setHorizontalAlignment(HorizontalAlignment.LEFT)
                 .add("                                                                                              ")
@@ -210,12 +211,12 @@ public class Generarpdfjavafx extends Application {
         documento.add(p2);
         documento.add(p3);
         documento.add(new Paragraph("\nCBT No. 3, Zumpango").setFont(font).setFontSize(8f).setTextAlignment(TextAlignment.CENTER));
-        documento.add(new Paragraph("\nESTABLECIDO EN CALLE SAN JUDAS TADEO No. 101 SAN BARTOLO CUAUTLALPAN").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));
+        documento.add(new Paragraph("\nESTABLECIDO EN ADOLFO LOPEZ MATEOS").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));
         documento.add(new Paragraph("\nHACE CONSTAR QUE SEGUN REGISTROS QUE OBRAN EN EL ARCHIVO DE ESTE PLANTEL:").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));
         documento.add(new Paragraph(nombre).setFont(font).setFontSize(10f).setTextAlignment(TextAlignment.CENTER));
         documento.add(new Paragraph("ES ALUMNO(A) DEL "+grado+" SEMENTRE DE:").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));
-        documento.add(new Paragraph(" BACHILLERATO ").setFont(font).setFontSize(10f).setTextAlignment(TextAlignment.CENTER));
-        documento.add(new Paragraph("\n EN EL GRUPO "+grupo+" SUSTENTO LOS EXAMENES FINALES DE LAS MATERIAS QUE ACONTINUACION SE ANOTAN").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));   
+        documento.add(new Paragraph(" BACHILLERATO TECNOLOGICO CON LA CARRERA DE TECNICO EN INFORMATICA").setFont(font).setFontSize(10f).setTextAlignment(TextAlignment.CENTER));
+        documento.add(new Paragraph("\n EN EL GRUPO         "+grupo+"        SUSTENTO LOS EXAMENES FINALES DE LAS MATERIAS QUE ACONTINUACION SE ANOTAN").setFont(font1).setFontSize(8f).setTextAlignment(TextAlignment.LEFT));   
         documento.add(tabla.setBorder(Border.NO_BORDER).setHorizontalAlignment(HorizontalAlignment.CENTER).setFont(font).setFontSize(8f).setTextAlignment(TextAlignment.CENTER));
         documento.add(new Paragraph("PROMEDIO: "+promedio).setFont(font).setFontSize(8f).setTextAlignment(TextAlignment.CENTER));
         documento.add(new Paragraph("\nLA CALIFICACION MINIMA APROBATORIA ES DE 6 (SEIS) PUNTOS").setFont(font).setFontSize(8f).setTextAlignment(TextAlignment.CENTER));

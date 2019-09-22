@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="generarpdfjavafx.jar" size="7381" download="eager" />
+    <jar href="generarpdfjavafx.jar" size="7480" download="eager" />
     <jar href="lib\barcodes-7.1.2.jar" size="150251" download="eager" />
     <jar href="lib\commons-codec-1.9.jar" size="263965" download="eager" />
     <jar href="lib\commons-logging-1.1.3.jar" size="62050" download="eager" />
